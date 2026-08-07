@@ -82,7 +82,7 @@ const popupContent = [
   {
     name: 'linkedin_board',
     title: 'LinkedIn',
-    discription: "I am always open to connecting with fellow developers, creators, and curious minds. Find me on LinkedIn at akashdpcali — where I share my professional journey, from frontend development and 3D work to my growth toward becoming a full-stack developer. Whether you are looking to collaborate, exchange ideas, or simply keep up with what I am building, let's connect and grow together.",
+    discription: `I am always open to connecting with fellow developers, creators, and curious minds. Find me on LinkedIn at akashdpcali, where I share my journey as a full-stack developer and 3D web developer, along with the projects I build using modern web technologies, AI, and interactive 3D experiences. Whether you're interested in collaborating, exchanging ideas, discussing technology, or simply following my latest work, let's connect and build something meaningful together.`,
     link: 'https://www.linkedin.com/in/akashdpcali/'
   }
 ];
