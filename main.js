@@ -76,7 +76,7 @@ const popupContent = [
   {
     name: 'github_board',
     title: 'Github',
-    discription: "My work lives at github.com/akashdpcali-cloud — a space where my projects, experiments, and ongoing builds come together. From frontend interfaces and interactive Three.js experiences to the projects I am building as I grow toward full-stack development, my repositories reflect both where I am and where I am headed.\n Every commit is a step forward. Feel free to explore, fork, or reach out if something sparks a collaboration.",
+    discription: `My work lives at github.com/akashdpcali-cloud — a space where my projects, experiments, and ongoing builds come together. From full-stack web applications and AI-powered systems to interactive Three.js experiences and 3D web development, my repositories showcase my passion for building scalable, creative, and user-focused software. Every project represents an opportunity to learn, solve real-world problems, and refine my engineering skills.\n\nEvery commit is a step forward. Feel free to explore, fork, or reach out if something sparks a collaboration.`,
     link: 'https://github.com/akashdpcali-cloud'
   },
   {
