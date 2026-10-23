@@ -13,6 +13,8 @@ body {
   display: grid;
   grid-template-rows: max-content;
   background-color: rgb(250, 73, 2);
+  color: rgb(221, 220, 220);
+  font-size: 15px;
   z-index: 1000;
   width: 30%;
   align-self: center;
@@ -45,6 +47,8 @@ body {
   width: 30%;
   justify-self: center;
   background-color: rgb(250, 73, 2);
+  color: rgb(221, 220, 220);
+  font-size: 15px;
   border-radius: 5px;
   padding: 20px;
 }
@@ -124,6 +128,9 @@ a{
   border: none;
   border-radius: 2px;
   background-color: rgb(250, 73, 2);
+  color: rgb(221, 220, 220);
+  font-size: 15px;
+  font-weight: 900;
   width: fit-content;
   height: fit-content;
   font-size: 30px;
