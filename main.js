@@ -230,68 +230,20 @@ function jumpTo(target, rotationY) {
 
 
 // -------------------- INPUT --------------------
-// Wrap everything in a DOMContentLoaded event to ensure the HTML elements exist first
-document.addEventListener('DOMContentLoaded', () => {
-  const myDiv = document.getElementById('holdable-div');
-  
-  // Safety check: if the div still can't be found, log a helpful warning
-  if (!myDiv) {
-    console.error("Error: Could not find an element with id='holdable-div' in your HTML.");
-    return;
-  }
-
-  let repeatTimeout;
-  let currentDelay = 300; // Starting delay in milliseconds (slower initial tick)
-  const minimumDelay = 50; // The fastest speed limit (50ms between ticks)
-  const accelerationStep = 40; // How much faster it gets each tick (subtracts 40ms)
-
-  // The function you want to run repeatedly
-  function myAction() {
-    console.log("Function is running...");
-  }
-
-  // 1. Manages the self-accelerating loop
-  function holdLoop() {
-    myAction();
-
-    // Make the next tick happen faster, until it hits the speed limit
-    currentDelay = Math.max(minimumDelay, currentDelay - accelerationStep);
-    
-    // Schedule the next execution
-    repeatTimeout = setTimeout(holdLoop, currentDelay);
-  }
-
-  // 2. Starts the repetition when pressed
-  function startHolding() {
-    // Clear any leftover timers safely
-    stopHolding(); 
-    
-    // Reset back to initial slow speed
-    currentDelay = 300; 
-    
-    // Kick off the loop
-    holdLoop();
-  }
-
-  // 3. Stops the repetition and cleans up
-  function stopHolding() {
-    clearTimeout(repeatTimeout);
-  }
-
-  // Desktop (Mouse) Listeners
-  myDiv.addEventListener('mousedown', startHolding);
-  myDiv.addEventListener('mouseup', stopHolding);
-  myDiv.addEventListener('mouseleave', stopHolding);
-
-  // Mobile (Touch) Listeners
-  myDiv.addEventListener('touchstart', (e) => {
-    e.preventDefault(); 
-    startHolding();
-  });
-  myDiv.addEventListener('touchend', stopHolding);
-  myDiv.addEventListener('touchcancel', stopHolding);
+document.querySelector('.up').addEventListener('click',()=>{
+        jumpTo({ z: character.position.z + moveDistance }, 0);
 });
 
+document.querySelector('.left').addEventListener('click',()=>{
+      jumpTo({ x: character.position.x + moveDistance }, -Math.PI / 2);
+});
+
+document.querySelector('.right').addEventListener('click',()=>{
+      jumpTo({ x: character.position.x - moveDistance }, Math.PI / 2);
+});
+document.querySelector('.down').addEventListener('click',()=>{
+      jumpTo({ z: character.position.z - moveDistance }, Math.PI);
+});
 
 
 window.addEventListener("keydown", (e) => {
