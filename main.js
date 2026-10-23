@@ -230,20 +230,58 @@ function jumpTo(target, rotationY) {
 
 
 // -------------------- INPUT --------------------
-document.querySelector('.up').addEventListener('mousedown',()=>{
-        jumpTo({ z: character.position.z + moveDistance }, 0);
-});
+const myDiv = document.getElementById('holdable-div');
+let repeatTimeout;
+let currentDelay = 300; // Starting delay in milliseconds (slower initial tick)
+const minimumDelay = 50; // The fastest speed limit (50ms between ticks)
+const accelerationStep = 40; // How much faster it gets each tick (subtracts 40ms)
 
-document.querySelector('.left').addEventListener('mousedown',()=>{
-      jumpTo({ x: character.position.x + moveDistance }, -Math.PI / 2);
-});
+// The function you want to run repeatedly
+function myAction() {
+  console.log("Function is running...");
+}
 
-document.querySelector('.right').addEventListener('mousedown',()=>{
-      jumpTo({ x: character.position.x - moveDistance }, Math.PI / 2);
+// 1. Manages the self-accelerating loop
+function holdLoop() {
+  myAction();
+
+  // Make the next tick happen faster, until it hits the speed limit
+  currentDelay = Math.max(minimumDelay, currentDelay - accelerationStep);
+  
+  // Schedule the next execution
+  repeatTimeout = setTimeout(holdLoop, currentDelay);
+}
+
+// 2. Starts the repetition when pressed
+function startHolding() {
+  // Clear any leftover timers safely
+  stopHolding(); 
+  
+  // Reset back to initial slow speed
+  currentDelay = 300; 
+  
+  // Kick off the loop
+  holdLoop();
+}
+
+// 3. Stops the repetition and cleans up
+function stopHolding() {
+  clearTimeout(repeatTimeout);
+}
+
+// Desktop (Mouse) Listeners
+myDiv.addEventListener('mousedown', startHolding);
+myDiv.addEventListener('mouseup', stopHolding);
+myDiv.addEventListener('mouseleave', stopHolding);
+
+// Mobile (Touch) Listeners
+myDiv.addEventListener('touchstart', (e) => {
+  e.preventDefault(); 
+  startHolding();
 });
-document.querySelector('.down').addEventListener('mousedown',()=>{
-      jumpTo({ z: character.position.z - moveDistance }, Math.PI);
-});
+myDiv.addEventListener('touchend', stopHolding);
+myDiv.addEventListener('touchcancel', stopHolding);
+
 
 
 window.addEventListener("keydown", (e) => {
