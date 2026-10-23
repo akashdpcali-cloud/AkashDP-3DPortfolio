@@ -12,7 +12,7 @@ body {
   position: absolute;
   display: grid;
   grid-template-rows: max-content;
-  background-color:rgb(0, 183, 255);
+  background-color: rgb(250, 73, 2);
   z-index: 1000;
   width: 30%;
   align-self: center;
@@ -44,7 +44,7 @@ body {
   position: absolute;
   width: 30%;
   justify-self: center;
-  background-color: rgb(0, 178, 223);
+  background-color: rgb(250, 73, 2);
   border-radius: 5px;
   padding: 20px;
 }
@@ -123,11 +123,15 @@ a{
   .oii {
   border: none;
   border-radius: 2px;
-  background-color: rgb(218, 142, 0);
+  background-color: rgb(250, 73, 2);
   width: fit-content;
   height: fit-content;
   font-size: 30px;
   transition: 0.1s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .oii:active {
