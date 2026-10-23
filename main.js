@@ -230,18 +230,18 @@ function jumpTo(target, rotationY) {
 
 
 // -------------------- INPUT --------------------
-document.querySelector('.up').addEventListener('click',()=>{
+document.querySelector('.up').addEventListener('touchstart',()=>{
         jumpTo({ z: character.position.z + moveDistance }, 0);
 });
 
-document.querySelector('.left').addEventListener('click',()=>{
+document.querySelector('.left').addEventListener('touchstart',()=>{
       jumpTo({ x: character.position.x + moveDistance }, -Math.PI / 2);
 });
 
-document.querySelector('.right').addEventListener('click',()=>{
+document.querySelector('.right').addEventListener('touchstart',()=>{
       jumpTo({ x: character.position.x - moveDistance }, Math.PI / 2);
 });
-document.querySelector('.down').addEventListener('click',()=>{
+document.querySelector('.down').addEventListener('touchstart',()=>{
       jumpTo({ z: character.position.z - moveDistance }, Math.PI);
 });
 
