@@ -230,20 +230,66 @@ function jumpTo(target, rotationY) {
 
 
 // -------------------- INPUT --------------------
-document.querySelector('.up').addEventListener('click',()=>{
-        jumpTo({ z: character.position.z + moveDistance }, 0);
+document.addEventListener('DOMContentLoaded', () => {
+  let repeatTimeout;
+  const holdDelay = 50; // Controls movement speed (triggers every 50ms while held)
+
+  // 1. Core loop structure to handle held buttons
+  function startHolding(actionFunction) {
+    stopHolding(); // Safe reset
+    
+    function loop() {
+      actionFunction();
+      repeatTimeout = setTimeout(loop, holdDelay);
+    }
+    
+    loop();
+  }
+
+  function stopHolding() {
+    clearTimeout(repeatTimeout);
+  }
+
+  // 2. Define your exact move actions mapping directly to your original code
+  const controls = [
+    { 
+      selector: '.up', 
+      action: () => jumpTo({ z: character.position.z + moveDistance }, 0) 
+    },
+    { 
+      selector: '.left', 
+      action: () => jumpTo({ x: character.position.x + moveDistance }, -Math.PI / 2) 
+    },
+    { 
+      selector: '.right', 
+      action: () => jumpTo({ x: character.position.x - moveDistance }, Math.PI / 2) 
+    },
+    { 
+      selector: '.down', 
+      action: () => jumpTo({ z: character.position.z - moveDistance }, Math.PI) 
+    }
+  ];
+
+  // 3. Attach standard and mobile hold event listeners to every button
+  controls.forEach(control => {
+    const button = document.querySelector(control.selector);
+    if (!button) return; // Skips if button doesn't exist yet
+
+    // Mouse Controls
+    button.addEventListener('mousedown', () => startHolding(control.action));
+    button.addEventListener('mouseup', stopHolding);
+    button.addEventListener('mouseleave', stopHolding);
+
+    // Touch / Mobile Controls
+    button.addEventListener('touchstart', (e) => {
+      e.preventDefault(); // Prevents modern mobile double-tap zoom interference
+      startHolding(control.action);
+    });
+    button.addEventListener('touchend', stopHolding);
+    button.addEventListener('touchcancel', stopHolding);
+  });
 });
 
-document.querySelector('.left').addEventListener('click',()=>{
-      jumpTo({ x: character.position.x + moveDistance }, -Math.PI / 2);
-});
-
-document.querySelector('.right').addEventListener('click',()=>{
-      jumpTo({ x: character.position.x - moveDistance }, Math.PI / 2);
-});
-document.querySelector('.down').addEventListener('click',()=>{
-      jumpTo({ z: character.position.z - moveDistance }, Math.PI);
-});
 
 
 window.addEventListener("keydown", (e) => {

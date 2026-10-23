@@ -120,21 +120,21 @@ a{
     row-gap:7px;
   }
   
-  .oii{
-    border: none;
-    border-radius: 2px;
-    background-color: rgb(218, 142, 0);
-    width: fit-content;
-    height: fit-content;
-    font-size: 30px;
-    transition: 0.1s;
-    
-  }
-  .oii:active{
-    background-color: black;
-    color: white;
-    
-  }
+  .oii {
+  border: none;
+  border-radius: 2px;
+  background-color: rgb(218, 142, 0);
+  width: fit-content;
+  height: fit-content;
+  font-size: 30px;
+  transition: 0.1s;
+}
+
+.oii:active {
+  background-color: black;
+  color: white;
+}
+
 
   .middle{
     width: 100%;
